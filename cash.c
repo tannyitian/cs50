@@ -16,7 +16,6 @@ int main(void)
         
     }
     while (dollars<0);
-
     int cents = round(dollars * 100);
 
     for (int c = cents; c>=quarters; c=c-quarters)
