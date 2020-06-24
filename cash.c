@@ -12,35 +12,32 @@ int main(void)
     int pennies = 1;
     do
     {
-         dollars = get_float("Change owed: ");
+        dollars = get_float("Change owed: ");
         
     }
     while (dollars<0);
     int cents = round(dollars * 100);
 
-    for (int c = cents; c>=quarters; c=c-quarters)
+    while (cents>=quarters)
     {
         cents = cents-quarters;
         count++;
     }
-    
-    for (int c = cents; c>=dimes; c=c-dimes)
+    while (cents>=dimes)
     {
         cents = cents-dimes;
         count++;
     }
-
-    for (int c = cents; c>=nickels; c=c-nickels)
+    while (cents>=nickels)
     {
         cents = cents-nickels;
         count++;
     }
-
-    for (int c = cents; c>=pennies; c=c-pennies)
+    while (cents>=pennies)
     {
         cents = cents-pennies;
         count++;
     }
-
+   
     printf("%i\n", count);
 }
