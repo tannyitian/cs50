@@ -5,7 +5,7 @@
 int main(void)
 {
     float dollars;
-    int count=0;
+    int count = 0;
     int quarters = 25;
     int dimes = 10;
     int nickels = 5;
@@ -15,27 +15,27 @@ int main(void)
         dollars = get_float("Change owed: ");
         
     }
-    while (dollars<0);
+    while (dollars < 0);
     int cents = round(dollars * 100);
 
-    while (cents>=quarters)
+    while (cents >= quarters)
     {
-        cents = cents-quarters;
+        cents = cents - quarters;
         count++;
     }
-    while (cents>=dimes)
+    while (cents >= dimes)
     {
-        cents = cents-dimes;
+        cents = cents - dimes;
         count++;
     }
-    while (cents>=nickels)
+    while (cents >= nickels)
     {
-        cents = cents-nickels;
+        cents = cents - nickels;
         count++;
     }
-    while (cents>=pennies)
+    while (cents >= pennies)
     {
-        cents = cents-pennies;
+        cents = cents - pennies;
         count++;
     }
    
