@@ -68,7 +68,7 @@ if (check % 10 == 0)
         int remains = n2 % 10;
         n2 = (n2 - remains) / 10;
     }
-    
+
     //printf("%li\n", n2);
 
     if ((n2 == 34 || n2 == 37) && (count==15))
@@ -90,7 +90,7 @@ if (check % 10 == 0)
     {
     printf("INVALID\n");
     }
-    
+
 }
 
 else
