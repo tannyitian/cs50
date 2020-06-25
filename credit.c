@@ -27,7 +27,7 @@ int main(void)
 
  }
 
- printf("%i\n", count);
+//printf("%i\n", count);
 
  for (int i = 0; i < count ; i++)
  {
@@ -69,7 +69,7 @@ if (check % 10 == 0)
         n2 = (n2 - remains) / 10;
     }
     
-    printf("%li\n", n2);
+    //printf("%li\n", n2);
 
     if ((n2 == 34 || n2 == 37) && (count==15))
     {
@@ -85,6 +85,10 @@ if (check % 10 == 0)
     {
         printf("VISA\n");
 
+    }
+    else
+    {
+    printf("INVALID\n");
     }
     
 }
