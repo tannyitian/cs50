@@ -17,26 +17,30 @@ int main(void)
   for (int i = 0; i < strlen(input); i++)
   {
      if (isalpha(input[i]))
+     {
       letters ++;
+     }
   }
   for (int i = 0; i < strlen(input); i++)
   {
       if (isspace(input[i]))
-      words ++;
+      {
+        words ++;
+      }
   }
   words++;
 
   for (int i = 0; i < strlen(input); i++)
   {
-      if ((input[i]) == '!' || (input[i]) == '.'|| (input[i]) == '?' )
-      sentences ++;
+      if ((input[i]) == '!' || (input[i]) == '.' || (input[i]) == '?')
+      {
+        sentences ++;
+      }
   }
 
   printf("%i letter(s)\n", letters);
   printf("%i word(s)\n", words);
   printf("%i sentence(s)\n", sentences);
-
-
 
 
   float L = (float)letters/words * 100;
