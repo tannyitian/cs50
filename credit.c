@@ -7,7 +7,6 @@ int main(void)
     long n;
     int a = 0;
     int b = 0;
-    int i = 0;
     int count = 0;
 
     do
@@ -16,85 +15,83 @@ int main(void)
     }
     while (n < 1);
     long n1 = n;
+    long n2 = n;
 
-//for check sum
-    while (n>=10)
-    {
-        int remainder = n%10;
-        n = (n - remainder) / 10;
-        if (i % 2 != 0)
-        {
-            if (remainder*2 >= 10)
+//find length of number
+
+ while(n1>0)
+ {
+
+      n1=n1/10;
+      count+=1;
+
+ }
+
+ printf("%i\n", count);
+
+ for (int i = 0; i < count ; i++)
+ {
+      int remainder = n%10;
+      n = (n - remainder) / 10;
+
+      if (i % 2 != 0)
+      {
+              if (remainder*2 >= 10)
             {
                 int remain = (remainder*2)%10;
                 a = a + remain + ((remainder*2 - remain) / 10);
-
             }
             else
             {
-                a = a + remainder*2;
+                 a = a + remainder*2;
 
             }
-
-        }
-        else
-        {
-            b = b + remainder;
-
-        }
-        i++;
-
-    }
-
-    if (n*2 >= 10)
-    {
-        int remains = n*2 % 10;
-        a = a + remains + ((n*2 - remains) / 10);
-    }
-
+      }
     else
     {
-        a = a + n*2;
+         b = b + remainder;
     }
 
-    int check = a + b;
+ }
 
 //printf("%i\n", a);
 //printf("%i\n", b);
-//printf("%i\n", check);
+//printf("%i\n", a+b);
+
+int check = a + b;
 
 
-//for checking card types
-
-if (check%10 == 0)
+if (check % 10 == 0)
 {
-    while (n1>=100)
+    while (n2 > 100)
     {
-        int remainder = n1%10;
-        n1 = (n1 - remainder) / 10;
-        count ++;
+        int remains = n2 % 10;
+        n2 = (n2 - remains) / 10;
     }
-    count += 2;
+    
+    printf("%li\n", n2);
 
-    //printf("%i\n", count);
-
-    if ((n1 == 34 || n1 == 37) && (count==15))
+    if ((n2 == 34 || n2 == 37) && (count==15))
     {
         printf("AMEX\n");
+
     }
-    else if ((n1 == 51 || n1 == 52 || n1 ==53 || n1 == 54 || n1 == 55) && (count == 16))
+    else if ((n2 == 51 || n2 == 52 || n2 ==53 || n2 == 54 || n2 == 55) && (count == 16))
     {
         printf("MASTERCARD\n");
+
     }
-    else if ((39 < n1 && n1 < 50) && (count == 13 || count == 16))
+    else if ((39 < n2 && n2 < 50) && (count == 13 || count == 16))
     {
         printf("VISA\n");
-    }
 
-    else
+    }
+    
+}
+
+else
     {
         printf("INVALID\n");
     }
-}
 
 }
