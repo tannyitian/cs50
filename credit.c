@@ -78,11 +78,11 @@ if (check%10 == 0)
 
     //printf("%i\n", count);
 
-    if ((n1 == 34 || n1 == 27) && (count==15))
+    if ((n1 == 34 || n1 == 37) && (count==15))
     {
         printf("AMEX\n");
     }
-    else if (n1 == 51 || n1 == 52 || n1 ==53 || n1 == 54 || n1 == 55)
+    else if ((n1 == 51 || n1 == 52 || n1 ==53 || n1 == 54 || n1 == 55) && (count == 16))
     {
         printf("MASTERCARD\n");
     }
