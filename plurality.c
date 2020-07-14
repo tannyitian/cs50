@@ -97,7 +97,7 @@ void print_winner(void)
 
     for (int i=0; i<candidate_count; i++)
     {
-        if ((max  == candidates[i].votes) && (strcmp(max_name, candidates[i].name) != 0))
+        if ((max  == candidates[i].votes) && (strcmp(max_name, candidates[i].name) != 0)) //to check that vote counts are the same but names are different
         {
             printf("%s\n", candidates[i].name);
         }
