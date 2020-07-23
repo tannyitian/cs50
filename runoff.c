@@ -171,6 +171,7 @@ void tabulate(void)
                          candidates[preferences[j][k]].votes +=1;
                      }
                  }
+                 break
              }
             }
         }
