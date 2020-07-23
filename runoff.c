@@ -154,9 +154,15 @@ void tabulate(void)
         }
         else
         {
-            candidates[preferences[i][i+1]].votes +=1;
-        }
-    } 
+            for(int j=0; j<candidate_count;j++)
+            {
+                if(candidates[preferences[i][j]].eliminated == true)
+                {
+                    candidates[preferences[i][j+1]].votes +=1;
+                }
+            }
+            }
+    }
     return;
 }
 
