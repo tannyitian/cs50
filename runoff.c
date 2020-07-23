@@ -149,19 +149,31 @@ void tabulate(void)
     {
         if (candidates[i].eliminated == false)
         {
-            candidates[preferences[i][0]].votes += 1;
+            for(int j=0; j<voter_count;j++)
+            {
+                if(preferences[j][0] == i) //check what is each voter first preference
+                {
+                    candidates[i].votes +=1;
+                }
 
+            }
         }
         else
         {
-            for(int j=0; j<candidate_count;j++)
+            for(int j=0; j<voter_count;j++)
             {
-                if(candidates[preferences[i][j]].eliminated == true)
-                {
-                    candidates[preferences[i][j+1]].votes +=1;
-                }
+             if(preferences[j][0] == i)
+             {
+                 for(int k =0; k<candidate_count; k++)
+                 {
+                     if(candidates[preferences[j][k]].eliminated == false)
+                     {
+                         candidates[preferences[j][k]].votes +=1;
+                     }
+                 }
+             }
             }
-            }
+        }
     }
     return;
 }
@@ -177,7 +189,7 @@ bool print_winner(void)
             printf("%s\n", candidates[i].name);
             return true;
         }
-        
+
     }
 
     return false;
