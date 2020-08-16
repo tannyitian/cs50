@@ -144,9 +144,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            blurBlue = 0;
-            blurRed = 0;
-            blurGreen = 0;
+            sBlue = 0;
+            sRed = 0;
+            sGreen = 0;
             count = 0.00;
             for (int k = -1; k < 2; k++)
             {
