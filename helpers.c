@@ -138,39 +138,39 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int edgeRed = round(sqrt(pow(sxRed, 2) + pow(syRed, 2)));
             int edgeGreen = round(sqrt(pow(sxGreen, 2) + pow(syGreen,2)));
 
-            // temp[i][j].rgbtRed = edgeRed > 255 ? 255: edgeRed;
-            // temp[i][j].rgbtBlue = edgeBlue > 255 ? 255: edgeBlue;
-            // temp[i][j].rgbtGreen = edgeGreen > 255 ? 255: edgeGreen;
+            temp[i][j].rgbtRed = edgeRed > 255 ? 255: edgeRed;
+            temp[i][j].rgbtBlue = edgeBlue > 255 ? 255: edgeBlue;
+            temp[i][j].rgbtGreen = edgeGreen > 255 ? 255: edgeGreen;
 
 
-            if(edgeBlue > 255)
-            {
-                temp[i][j].rgbtBlue = 255;
-            }
-            else
-            {
-                temp[i][j].rgbtBlue = edgeBlue;
-            }
+            // if(edgeBlue > 255)
+            // {
+            //     temp[i][j].rgbtBlue = 255;
+            // }
+            // else
+            // {
+            //     temp[i][j].rgbtBlue = edgeBlue;
+            // }
 
-            if(edgeRed > 255)
-            {
-                temp[i][j].rgbtRed = 255;
-            }
-            else
-            {
-                temp[i][j].rgbtRed = edgeRed;
-            }
+            // if(edgeRed > 255)
+            // {
+            //     temp[i][j].rgbtRed = 255;
+            // }
+            // else
+            // {
+            //     temp[i][j].rgbtRed = edgeRed;
+            // }
 
-            if(edgeGreen > 255)
-            {
-                temp[i][j].rgbtGreen = 255;
-            }
-            else
-            {
-                temp[i][j].rgbtBlue = edgeGreen;
-            }
-            
-            
+            // if(edgeGreen > 255)
+            // {
+            //     temp[i][j].rgbtGreen = 255;
+            // }
+            // else
+            // {
+            //     temp[i][j].rgbtBlue = edgeGreen;
+            // }
+
+
         }
     }
 
