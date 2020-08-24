@@ -85,8 +85,18 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE temp[height][width];
-    int gx[3][3] ={{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
-    int gy[3][3] ={{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
+    int gx[3][3] ={
+        {-1, 0, 1},
+        {-2, 0, 2},
+        {-1, 0, 1}
+
+    };
+    int gy[3][3] ={
+        {-1, -2, -1},
+        {0, 0, 0},
+        {1, 2, 1}
+
+    };
 
 
 
@@ -94,13 +104,15 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            float sxBlue=0, syBlue = 0, sxRed = 0, syRed = 0, sxGreen = 0, syGreen = 0;
+            float sxBlue = 0, syBlue = 0;
+            float sxRed = 0, syRed = 0;
+            float sxGreen = 0, syGreen = 0;
             int rowArray[] = {i-1, i, i+1};
             int colArray[] = {j-1, j, j+1};
 
-            for (int k = 0; k < 3; k++)
+            for (int x = 0; x < 3; x++)
             {
-                if (rowArray[k] < 0 || rowArray[k] > height - 1)
+                if (rowArray[x] < 0 || rowArray[x] > height - 1)
                 {
                     continue;
                 }
@@ -111,13 +123,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     {
                         continue;
                     }
-                    sxBlue += image[rowArray[k]][colArray[y]].rgbtBlue * gx[k][y];
-                    sxRed += image[rowArray[k]][colArray[y]].rgbtRed * gx[k][y];
-                    sxGreen += image[rowArray[k]][colArray[y]].rgbtGreen *gx[k][y];
+                    sxBlue += image[rowArray[x]][colArray[y]].rgbtBlue * gx[x][y];
+                    sxRed += image[rowArray[x]][colArray[y]].rgbtRed * gx[x][y];
+                    sxGreen += image[rowArray[x]][colArray[y]].rgbtGreen *gx[x][y];
 
-                    syBlue += image[rowArray[k]][colArray[y]].rgbtBlue * gy[k][y];
-                    syRed += image[rowArray[k]][colArray[y]].rgbtRed * gy[k][y];
-                    syGreen += image[rowArray[k]][colArray[y]].rgbtGreen *gy[k][y];
+                    syBlue += image[rowArray[x]][colArray[y]].rgbtBlue * gy[x][y];
+                    syRed += image[rowArray[x]][colArray[y]].rgbtRed * gy[x][y];
+                    syGreen += image[rowArray[x]][colArray[y]].rgbtGreen *gy[x][y];
 
                 }
             }
