@@ -47,7 +47,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int sRed = 0;
             int sGreen = 0;
             float count = 0.00;
-            
+
             for (int k = -1; k < 2; k++)
             {
                 for (int y = -1; y<2; y++)
@@ -84,113 +84,143 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-//     RGBTRIPLE temp[height][width];
-//     int gx[3][3];
-//     int gy[3][3];
+    RGBTRIPLE temp[height][width];
+    int gx[3][3];
+    int gy[3][3];
 
-//     for (int i = 0; i < 3; i++)
-//     {
-//         for(int j = 0; j < 3; j++)
-//         {
-//             if (j == 0)
-//             {
-//                 if(i==0 || i==2)
-//                     gx[i][j] = -1;
+    for (int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            if (j == 0)
+            {
+                if(i==0 || i==2)
+                    gx[i][j] = -1;
 
-//                 else
-//                     gx[i][j] = -2;
+                else
+                    gx[i][j] = -2;
 
-//             }
-//             else if (j == 2)
-//             {
-//                 if(i==0 || i==2)
-//                     gx[i][j] = 1;
+            }
+            else if (j == 2)
+            {
+                if(i==0 || i==2)
+                    gx[i][j] = 1;
 
-//                 else
-//                     gx[i][j] = 2;
-//             }
-//             else
-//             {
-//                 gx[i][j] = 0;
-//             }
+                else
+                    gx[i][j] = 2;
+            }
+            else
+            {
+                gx[i][j] = 0;
+            }
 
-//         }
-//     }
+        }
+    }
 
-//     for (int i = 0; i < 3; i++)
-//     {
-//         for(int j = 0; j < 3; j++)
-//         {
-//             if (i == 0)
-//             {
-//                 if(j==0 || j==2)
-//                     gy[i][j] = -1;
+    for (int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            if (i == 0)
+            {
+                if(j==0 || j==2)
+                    gy[i][j] = -1;
 
-//                 else
-//                     gy[i][j] = -2;
+                else
+                    gy[i][j] = -2;
 
-//             }
-//             else if (i == 2)
-//             {
-//                 if(j==0 || j==2)
-//                     gy[i][j] = 1;
+            }
+            else if (i == 2)
+            {
+                if(j==0 || j==2)
+                    gy[i][j] = 1;
 
-//                 else
-//                     gy[i][j] = 2;
-//             }
-//             else
-//             {
-//                 gy[i][j] = 0;
-//             }
+                else
+                    gy[i][j] = 2;
+            }
+            else
+            {
+                gy[i][j] = 0;
+            }
 
-//         }
-//     }
+        }
+    }
 
-//     for (int i = 0; i < height; i++)
-//     {
-//         for (int j = 0; j < width; j++)
-//         {
-//             int sxBlue, syBlue = 0;
-//             int sxRed, syBlue = 0;
-//             int sxGreen, syBlue = 0;
-//             float count = 0.00;
-//             for (int k = -1; k < 2; k++)
-//             {
-//                 if (i + k < 0 || i + k > height - 1)
-//                 {
-//                     continue;
-//                 }
-//                 for (int y = -1; y < 2; y++)
-//                 {
-//                     if (j + y < 0 || j + y > width - 1)
-//                     {
-//                         continue;
-//                     }
-//                     sBlue += image[i + k][j + y].rgbtBlue * gx[i + k][j + y];
-//                     sRed += image[i + k][j + y].rgbtRed * gx[i + k][j + y];
-//                     sGreen += image[i + k][j + y].rgbtGreen *gx[i + k][j + y];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            float sxBlue=0, syBlue = 0, sxRed = 0, syRed = 0, sxGreen = 0, syGreen = 0;
+            int rowArray[] = {i-1, i, i+1};
+            int colArray[] = {j-1, j, j+1};
 
-//                     count++;
-//                 }
+            for (int k = 0; k < 3; k++)
+            {
+                if (rowArray[k] < 0 || rowArray[k] > height - 1)
+                {
+                    continue;
+                }
+                for (int y = 0; y < 3; y++)
+                {
+                    if (colArray[y] < 0 || colArray[y] > width - 1)
+                    {
+                        continue;
+                    }
+                    sxBlue += image[rowArray[k]][colArray[y]].rgbtBlue * gx[k][y];
+                    sxRed += image[rowArray[k]][colArray[y]].rgbtRed * gx[k][y];
+                    sxGreen += image[rowArray[k]][colArray[y]].rgbtGreen *gx[k][y];
 
-//             }
-//             temp[i][j].rgbtBlue = round(sBlue / count);
-//             temp[i][j].rgbtRed = round(sRed / count);
-//             temp[i][j].rgbtGreen = round(sGreen / count);
-//         }
-//     }
+                    syBlue += image[rowArray[k]][colArray[y]].rgbtBlue * gy[k][y];
+                    syRed += image[rowArray[k]][colArray[y]].rgbtRed * gy[k][y];
+                    syGreen += image[rowArray[k]][colArray[y]].rgbtGreen *gy[k][y];
 
-//     for (int i = 0; i < height; i++)
-//     {
-//         for (int j = 0; j < width; j++)
-//         {
-//             image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
-//             image[i][j].rgbtGreen = temp[i][j].rgbtGreen;
-//             image[i][j].rgbtRed = temp[i][j].rgbtRed;
-//         }
-//     }
+                }
+            }
 
-// }
+                int edgeBlue = round(sqrt(pow(sxBlue, 2) + pow(syBlue,2)));
+                int edgeRed = round(sqrt(pow(sxRed, 2) + pow(syRed,2)));
+                int edgeGreen = round(sqrt(pow(sxGreen, 2) + pow(syGreen,2)));
+
+                if(edgeBlue > 255)
+                {
+                    edgeBlue = 255;
+                    temp[i][j].rgbtBlue = edgeBlue;
+                }
+                else
+                {
+                    temp[i][j].rgbtBlue = edgeBlue;
+                }
+                
+                if(edgeRed > 255)
+                {
+                    edgeRed = 255;
+                    temp[i][j].rgbtRed = edgeRed;
+                }
+                else
+                {
+                    temp[i][j].rgbtRed = edgeRed;
+                }
+
+                if(edgeGreen > 255)
+                {
+                    edgeGreen = 255;
+                    temp[i][j].rgbtGreen = edgeGreen;
+                }
+                else
+                {
+                    temp[i][j].rgbtBlue = edgeGreen;
+                }
+        }
+    }
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
+            image[i][j].rgbtGreen = temp[i][j].rgbtGreen;
+            image[i][j].rgbtRed = temp[i][j].rgbtRed;
+        }
+    }
     return;
 }
 
