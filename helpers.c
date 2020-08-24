@@ -85,66 +85,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE temp[height][width];
-    int gx[3][3];
-    int gy[3][3];
+    int gx[3][3] ={{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
+    int gy[3][3] ={{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-    for (int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            if (j == 0)
-            {
-                if(i==0 || i==2)
-                    gx[i][j] = -1;
 
-                else
-                    gx[i][j] = -2;
-
-            }
-            else if (j == 2)
-            {
-                if(i==0 || i==2)
-                    gx[i][j] = 1;
-
-                else
-                    gx[i][j] = 2;
-            }
-            else
-            {
-                gx[i][j] = 0;
-            }
-
-        }
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            if (i == 0)
-            {
-                if(j==0 || j==2)
-                    gy[i][j] = -1;
-
-                else
-                    gy[i][j] = -2;
-
-            }
-            else if (i == 2)
-            {
-                if(j==0 || j==2)
-                    gy[i][j] = 1;
-
-                else
-                    gy[i][j] = 2;
-            }
-            else
-            {
-                gy[i][j] = 0;
-            }
-
-        }
-    }
 
     for (int i = 0; i < height; i++)
     {
@@ -190,7 +134,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     temp[i][j].rgbtBlue = edgeBlue;
                 }
-                
+
                 if(edgeRed > 255)
                 {
                     edgeRed = 255;
