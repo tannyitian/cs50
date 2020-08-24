@@ -104,6 +104,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     continue;
                 }
+                
                 for (int y = 0; y < 3; y++)
                 {
                     if (colArray[y] < 0 || colArray[y] > width - 1)
@@ -117,43 +118,43 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     syBlue += image[rowArray[k]][colArray[y]].rgbtBlue * gy[k][y];
                     syRed += image[rowArray[k]][colArray[y]].rgbtRed * gy[k][y];
                     syGreen += image[rowArray[k]][colArray[y]].rgbtGreen *gy[k][y];
-
+                    
                 }
             }
+                
+            int edgeBlue = round(sqrt(pow(sxBlue, 2) + pow(syBlue,2)));
+            int edgeRed = round(sqrt(pow(sxRed, 2) + pow(syRed,2)));
+            int edgeGreen = round(sqrt(pow(sxGreen, 2) + pow(syGreen,2)));
 
-                int edgeBlue = round(sqrt(pow(sxBlue, 2) + pow(syBlue,2)));
-                int edgeRed = round(sqrt(pow(sxRed, 2) + pow(syRed,2)));
-                int edgeGreen = round(sqrt(pow(sxGreen, 2) + pow(syGreen,2)));
+            if(edgeBlue > 255)
+            {
+                edgeBlue = 255;
+                temp[i][j].rgbtBlue = edgeBlue;
+            }
+            else
+            {
+                temp[i][j].rgbtBlue = edgeBlue;
+            }
 
-                if(edgeBlue > 255)
-                {
-                    edgeBlue = 255;
-                    temp[i][j].rgbtBlue = edgeBlue;
-                }
-                else
-                {
-                    temp[i][j].rgbtBlue = edgeBlue;
-                }
+            if(edgeRed > 255)
+            {
+                edgeRed = 255;
+                temp[i][j].rgbtRed = edgeRed;
+            }
+            else
+            {
+                temp[i][j].rgbtRed = edgeRed;
+            }
 
-                if(edgeRed > 255)
-                {
-                    edgeRed = 255;
-                    temp[i][j].rgbtRed = edgeRed;
-                }
-                else
-                {
-                    temp[i][j].rgbtRed = edgeRed;
-                }
-
-                if(edgeGreen > 255)
-                {
-                    edgeGreen = 255;
-                    temp[i][j].rgbtGreen = edgeGreen;
-                }
-                else
-                {
-                    temp[i][j].rgbtBlue = edgeGreen;
-                }
+            if(edgeGreen > 255)
+            {
+                edgeGreen = 255;
+                temp[i][j].rgbtGreen = edgeGreen;
+            }
+            else
+            {
+                temp[i][j].rgbtBlue = edgeGreen;
+            }
         }
     }
     for (int i = 0; i < height; i++)
