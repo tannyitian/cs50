@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdbool.h> 
+#include <stdbool.h>
 #define N_BYTES 512
 int main(int argc, char *argv[])
 {
@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
 
     while (true)
     {
-        readin = fread(buffer, sizeof(BYTE), N_BYTES, ptr1); //number of bytes read into buffer (we want to read 512 bytes)
-        if (readin == 0) //means we have reached the end of the file
+        readin = fread(buffer, sizeof(BYTE), N_BYTES, ptr1); //Writing from img to buffer (each time read in 512 bytes)
+        if (readin == 0) //means we have reached the end of the file.
         {
             break;
         }
-      //check whether if it is the start of jpeg
+        //check whether if it is the start of jpeg
         // if it is the first jpeg of the file we will open and write to it
         //if it is no longer the first jpeg which means its the start of next jpeg, we will have to close the previous jpeg before writing to it
         // else if not the start of a new jpeg which means we have to continue writing to it because a jpeg may have several blocks of 512 bytes
@@ -55,14 +55,15 @@ int main(int argc, char *argv[])
             {
                 fclose(img);
             }
-            
+
             sprintf(filename, "%03i.jpg", count++);
             img = fopen(filename, "w");
-            
-            if (img == NULL)
+
+            if (img == NULL) //check if memory is successfully allocated
             {
                 return 3;
             }
+
             fwrite(buffer, sizeof(BYTE), N_BYTES, img); //WRITING FROM BUFFER TO IMG
 
         }
