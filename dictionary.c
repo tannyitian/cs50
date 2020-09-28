@@ -123,13 +123,22 @@ unsigned int size(void)
 bool unload(void)
 {
 
-    // for(inti =0; i<N; i++)
-    // {
+    for(int i =0; i<N; i++)
+    {
         
-
-    // }
+        node* cursor = table[i];
+        node* tmp = cursor;
+        while(cursor->next != NULL)
+        {
+            cursor = cursor->next;
+            free(tmp);
+            tmp = cursor;
+        }
+        
+    }
+    
     // TODO
 
-    return false;
+    return true;
 }
 
