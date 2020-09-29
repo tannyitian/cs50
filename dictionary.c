@@ -18,7 +18,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = 1000;
 
 // Hash table
 node *table[N];
@@ -37,20 +37,24 @@ bool check(const char *word)
 // how to traverse? set up a variable to point to the first element, if not the one we are finding,
 // set cursor to whatever next node of first element is pointing to, repeating until find word, true. Eventually end of the linked list which is NULL means we cant find the word.
 
+
+
     int ind = hash(word);
     node* new_node = table[ind];
-    while (new_node->next != NULL)
+    if (table[ind] != NULL)
     {
-        if (strcasecmp(new_node->word, word) == 0)
-         {
-             return true;
-         }
-         else
-         {
+        while (new_node->next != NULL)
+        {
+            if (strcasecmp(new_node->word, word) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                new_node = new_node->next;
 
-            new_node = new_node->next;
-
-         }
+            }
+        }
     }
     return false;
 }
@@ -60,14 +64,29 @@ unsigned int hash(const char *word)
 {
     // TODO
 
-    char check[strlen(word)];
-    strcpy(check, word);
-    char check_d = tolower(check[0]);
-    int ind = check_d - 'a';
+    // char check[strlen(word)];
+    // strcpy(check, word);
+    // char check_d = tolower(check[0]);
+    // int ind = check_d - 'a';
 
-    return(ind);
-    return 0;
+    // return ind;
+
+    int hash = 0;
+    int n;
+    for (int i=0; word[i] != '\0'; i++)
+    {
+        if (isalpha(word[i]))
+            n = word[i] - 'a' + 1;
+        else
+            n=27;
+
+        hash = ((hash << 3) + n) % N;
+    }
+
+    return hash;
+
 }
+
 
 bool loaded1 = false;
 int number = 0;
@@ -76,7 +95,8 @@ bool load(const char *dictionary)
 {
 
     char word[LENGTH+1]; //Length is defined in dictionary.h
-    // TODO
+    for (int i =0; i<N; i++)
+        table[i] =  NULL;//
 
     FILE* inptr = fopen(dictionary, "r");
     if (inptr == NULL)
@@ -89,6 +109,7 @@ bool load(const char *dictionary)
         node* n = malloc(sizeof(node));
         if(n == NULL)
         {
+            free(n); //
             return 1;
         }
         number++;
@@ -125,18 +146,20 @@ bool unload(void)
 
     for(int i =0; i<N; i++)
     {
-        
-        node* cursor = table[i];
-        node* tmp = cursor;
-        while(cursor->next != NULL)
+
+        if(table[i] != NULL)
         {
-            cursor = cursor->next;
-            free(tmp);
-            tmp = cursor;
+            node* cursor = table[i];
+            while(cursor->next != NULL)
+            {
+                node* tmp = cursor;
+                cursor = cursor->next;
+                free(tmp);
+            }
+
         }
-        
     }
-    
+
     // TODO
 
     return true;
