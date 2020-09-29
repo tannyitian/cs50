@@ -110,7 +110,6 @@ bool load(const char *dictionary)
         if(n == NULL)
         {
             free(n); //
-            return 1;
         }
         number++;
         strcpy(n->word, word); //copying word to node
