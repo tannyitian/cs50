@@ -101,15 +101,14 @@ bool load(const char *dictionary)
     FILE* inptr = fopen(dictionary, "r");
     if (inptr == NULL)
     {
-        fclose(inptr);
         return 1;
     }
+
     while (fscanf(inptr, "%s", word) != EOF)
     {
         node* n = malloc(sizeof(node));
         if(n == NULL)
         {
-            free(n);
             return false;//
         }
 
