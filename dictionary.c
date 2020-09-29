@@ -101,6 +101,7 @@ bool load(const char *dictionary)
     FILE* inptr = fopen(dictionary, "r");
     if (inptr == NULL)
     {
+        fclose(inptr);
         return 1;
     }
     while (fscanf(inptr, "%s", word) != EOF)
