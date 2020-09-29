@@ -73,11 +73,10 @@ unsigned int hash(const char *word)
 }
 
 
-// bool loaded1 = false;
-int number = 0;
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
+    int number = 0;
 
     char word[LENGTH+1]; //Length is defined in dictionary.h
     for (int i =0; i<N; i++)
@@ -104,7 +103,6 @@ bool load(const char *dictionary)
     }
 
     fclose(inptr);
-    // loaded1 = true;
     return true;
 
 }
@@ -113,9 +111,6 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
 
-    // if (loaded1 == false)
-    //     return 1;
-    // else
         return number;
 }
 
@@ -139,8 +134,6 @@ bool unload(void)
 
         }
     }
-
-    // TODO
 
     return true;
 }
