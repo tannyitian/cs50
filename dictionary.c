@@ -43,7 +43,7 @@ bool check(const char *word)
     node* new_node = table[ind];
     if (table[ind] != NULL)
     {
-        while (new_node->next != NULL)
+        while (new_node != NULL)
         {
             if (strcasecmp(new_node->word, word) == 0)
             {
