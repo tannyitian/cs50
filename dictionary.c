@@ -103,14 +103,25 @@ bool load(const char *dictionary)
     {
         return 1;
     }
-
+    node* n;
     while (fscanf(inptr, "%s", word) != EOF)
     {
-        node* n = malloc(sizeof(node));
-        if(n == NULL)
+        // node* n = malloc(sizeof(node));
+        // if(n == NULL)
+        // {
+        //     free(n); //
+        // }
+        
+        do
         {
-            free(n); //
-        }
+            n = malloc(sizeof(node));
+            if(n == NULL)
+            {
+                free(n); //
+            }
+        } while (n==NULL);
+        
+        
         number++;
         strcpy(n->word, word); //copying word to node
         int index = hash(word);
@@ -142,7 +153,7 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    
+
     if(loaded1 == false)
     {
         return false;
