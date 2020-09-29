@@ -70,25 +70,10 @@ unsigned int hash(const char *word)
     int ind = check_d - 'a';
 
     return ind;
-
-    // int hash = 0;
-    // int n;
-    // for (int i=0; word[i] != '\0'; i++)
-    // {
-    //     if (isalpha(word[i]))
-    //         n = word[i] - 'a' + 1;
-    //     else
-    //         n=27;
-
-    //     hash = ((hash << 3) + n) % N;
-    // }
-
-    // return hash;
-
 }
 
 
-bool loaded1 = false;
+// bool loaded1 = false;
 int number = 0;
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
@@ -100,9 +85,7 @@ bool load(const char *dictionary)
 
     FILE* inptr = fopen(dictionary, "r");
     if (inptr == NULL)
-    {
         return 1;
-    }
 
     while (fscanf(inptr, "%s", word) != EOF)
     {
@@ -121,7 +104,7 @@ bool load(const char *dictionary)
     }
 
     fclose(inptr);
-    loaded1 = true;
+    // loaded1 = true;
     return true;
 
 }
@@ -139,12 +122,6 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-
-    if(loaded1 == false)
-    {
-        return false;
-    }
-
     for(int i =0; i<N; i++)
     {
 
