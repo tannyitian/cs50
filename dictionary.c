@@ -62,8 +62,6 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    // TODO
-
     char check[strlen(word)];
     strcpy(check, word);
     char check_d = tolower(check[0]);
