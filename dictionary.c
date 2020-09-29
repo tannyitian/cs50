@@ -130,14 +130,10 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
 
-    if (loaded1 == false)
-    {
-        return 1;
-    }
-    else
-    {
+    // if (loaded1 == false)
+    //     return 1;
+    // else
         return number;
-    }
 }
 
 // Unloads dictionary from memory, returning true if successful else false
